@@ -1,12 +1,12 @@
 
 #include "Window.h"
 
+HDC hdc;
+PAINTSTRUCT ps;
+Snake_Game * Snake = new Snake_Game();
 
 long __stdcall WindowProc(HWND window, UINT msg, WPARAM wp, LPARAM lp)
 {
-	HDC hdc;
-	PAINTSTRUCT ps;
-	Snake_Game * Snake = new Snake_Game();
 
 	switch (msg)
 	{
@@ -31,7 +31,8 @@ long __stdcall WindowProc(HWND window, UINT msg, WPARAM wp, LPARAM lp)
 				}
 				if (Snake->map_cordinate(i, j) == 2)
 				{
-					Rectangle(hdc, j * 50, i * 50, (j * 50) + 50, (i * 50) + 50);
+					cout << i << j << endl;
+					Ellipse(hdc, j * 50, i * 50, (j * 50) + 50, (i * 50) + 50);
 				}
 			}
 		}
@@ -51,6 +52,9 @@ long __stdcall WindowProc(HWND window, UINT msg, WPARAM wp, LPARAM lp)
 		{
 		case 'w': //w key
 			cout << "W key has been pressed" << endl;
+			Snake->move();
+			InvalidateRgn(window, NULL, TRUE);
+
 			break;
 		case 'a': //a key
 			cout << "A key has been pressed" << endl;
@@ -69,7 +73,9 @@ long __stdcall WindowProc(HWND window, UINT msg, WPARAM wp, LPARAM lp)
 	{
 		int iPosX = LOWORD(lp);
 		int iPosY = HIWORD(lp);
-		cout << iPosX << " " << iPosX << endl;
+		Snake->mouse_x = iPosX;
+		Snake->mouse_y = iPosY;
+		Snake->mouse_clicked = true;
 		break;
 	}
 
@@ -122,5 +128,6 @@ void Window::start_window()
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+		UpdateWindow(hwnd);
 	}
 }

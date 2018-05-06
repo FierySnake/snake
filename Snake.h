@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <Windows.h>
+#include <vector>
+
+using std::vector;
 
 //logic
 //how to end = if snake touch wall or itself
@@ -20,7 +23,12 @@ class Snake_Game
 		void check_colliion();
 		void game_over();
 		void food_respawn();
+
 		
+
+		int mouse_x;
+		int mouse_y;
+		bool mouse_clicked;
 
 
 	private:
@@ -31,7 +39,7 @@ class Snake_Game
 			1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 			1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 			1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-			1,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,1,
+			1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 			1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 			1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
 			1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -39,8 +47,8 @@ class Snake_Game
 			1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 		};
 
-		int snake_x[130];
-		int snake_y[130];
+		vector<int> snake_x;
+		vector<int> snake_y;
 
 		bool up;
 		bool down;
@@ -54,11 +62,6 @@ class Snake_Game
 
 		int fruit_x;
 		int fruit_y;
-
-		COLORREF Snake = RGB(255, 0, 0); //snake is red
-		COLORREF Food = RGB(0, 0, 255); //food is blue;
-		COLORREF Border = RGB(255, 255, 255); //Borders are Black;
-
 
 
 
