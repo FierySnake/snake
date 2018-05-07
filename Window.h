@@ -31,10 +31,6 @@ class Window
 		char const window_class[11] = "Snake_Game";
 
 
-		COLORREF Snake = RGB(255, 0, 0); //snake is red
-		COLORREF Food = RGB(0, 0, 255); //food is blue;
-		COLORREF Border = RGB(255, 255, 255); //Borders are Black;
-
 
 };
 

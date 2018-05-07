@@ -4,6 +4,10 @@
 #include <Windows.h>
 #include <vector>
 
+#include <time.h>
+#include <stdlib.h>
+
+
 using std::vector;
 
 //logic
@@ -19,12 +23,11 @@ class Snake_Game
 
 	public:
 		int map_cordinate(int i,int j);
-		void move();
-		void check_colliion();
+		bool move(char x);
+		void check_collision(int x, int y);
 		void game_over();
 		void food_respawn();
-
-		
+	
 
 		int mouse_x;
 		int mouse_y;
@@ -55,13 +58,10 @@ class Snake_Game
 		bool left;
 		bool right;
 		
-		bool food_eaten;
-		bool snake_ate_himself;
-		bool snake_touched_border;
+		bool game_Over = false;
+		int food_eaten = 0;
 
-
-		int fruit_x;
-		int fruit_y;
+		bool win = false;
 
 
 
